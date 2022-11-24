@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 
-// Ensure that the styles from index.css are included.
-import './index.css';
-import 'milligram';
+import './styles.css';
 import registerServiceWorker from './registerServiceWorker';
 
 import App, { loadApp } from './App';
