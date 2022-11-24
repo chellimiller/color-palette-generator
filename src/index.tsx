@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 
 // Ensure that the styles from index.css are included.
 import './index.css';
+import 'milligram';
 import registerServiceWorker from './registerServiceWorker';
 
 import App from './App';

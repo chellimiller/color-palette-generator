@@ -1,0 +1,30 @@
+:root {
+  --cpg-spacing-half: 0.125rem;
+  --cpg-spacing-1x: 0.25rem;
+  --cpg-spacing-2x: 0.5rem;
+  --cpg-spacing-3x: 0.75rem;
+  --cpg-spacing-4x: 1rem;
+
+  --cpg-font-size-sm: 0.85rem;
+  --cpg-font-size-md: 1rem;
+  --cpg-font-size-lg: 1.5rem;
+
+  --cpg-font-weight-normal: 400;
+
+  --cpg-color-text-dark: #0009;
+  --cpg-color-text-light: #fffc;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --cpg-color-text-main: var(--cpg-color-text-dark);
+    --cpg-color-bg-app: #eee;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cpg-color-text-main: var(--cpg-color-text-light);
+    --cpg-color-bg-app: #222;
+  }
+}
