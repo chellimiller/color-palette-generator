@@ -1,13 +1,17 @@
 import Dexie, { Table } from 'dexie';
-import { ColorPalette } from '../types';
+import { Color } from '../types';
+
+export type DatabaseColor = Omit<Color, 'base'> & {
+  base: string;
+};
 
 export class DexieDatabase extends Dexie {
-  colors!: Table<ColorPalette, string>;
+  colors!: Table<DatabaseColor, string>;
 
   constructor() {
     super('color-palette-generator');
     this.version(1).stores({
-      colors: '++id, name',
+      colors: '++label',
     });
   }
 }

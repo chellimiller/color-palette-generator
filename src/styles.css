@@ -1,0 +1,13 @@
+header,
+main {
+  padding: 0 var(--spacing);
+}
+
+details > summary {
+  padding: var(--spacing);
+  border-radius: var(--border-radius);
+}
+
+details > * {
+  padding: 0 var(--spacing);
+}

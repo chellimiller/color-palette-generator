@@ -1,72 +1,75 @@
-import * as tinycolor from 'tinycolor2';
+export * from './Color';
+export * from './ColorVariant';
 
-export type Override<T, U> = Omit<T, keyof U> & U;
+// import * as tinycolor from 'tinycolor2';
 
-export type ContrastType = 'light' | 'dark';
+// export type Override<T, U> = Omit<T, keyof U> & U;
 
-export type ColorShade = {
-  color: tinycolor.Instance;
-  contrast?: ContrastType;
-};
+// export type ContrastType = 'light' | 'dark';
 
-export type ColorSettings = {
-  name: string;
-  hue: number;
-};
+// export type ColorShade = {
+//   color: tinycolor.Instance;
+//   contrast?: ContrastType;
+// };
 
-export type Color<SHADE extends string = string> = ColorSettings & {
-  shades: Map<SHADE, ColorShade>;
-};
+// export type ColorSettings = {
+//   name: string;
+//   hue: number;
+// };
 
-export type ColorPaletteContrast = {
-  ratio: number;
-  light: tinycolor.Instance;
-  dark: tinycolor.Instance;
-};
+// export type Color<SHADE extends string = string> = ColorSettings & {
+//   shades: Map<SHADE, ColorShade>;
+// };
 
-export type ColorPaletteSaturationValues = {
-  a: number;
-  b: number;
-  c: number;
-};
+// export type ColorPaletteContrast = {
+//   ratio: number;
+//   light: tinycolor.Instance;
+//   dark: tinycolor.Instance;
+// };
 
-export type ColorPaletteSettings = {
-  contrast: ColorPaletteContrast;
-  saturationValues: ColorPaletteSaturationValues;
-};
+// export type ColorPaletteSaturationValues = {
+//   a: number;
+//   b: number;
+//   c: number;
+// };
 
-export type PartialColorPaletteSettings = Override<
-  Partial<ColorPaletteSettings>,
-  {
-    contrast?: Partial<ColorPaletteContrast>;
-    saturationValues?: Partial<ColorPaletteSaturationValues>;
-  }
->;
+// export type ColorPaletteSettings = {
+//   contrast: ColorPaletteContrast;
+//   saturationValues: ColorPaletteSaturationValues;
+// };
 
-export type ColorPaletteShade = {
-  L: number;
-  contrast?: ContrastType;
-};
+// export type PartialColorPaletteSettings = Override<
+//   Partial<ColorPaletteSettings>,
+//   {
+//     contrast?: Partial<ColorPaletteContrast>;
+//     saturationValues?: Partial<ColorPaletteSaturationValues>;
+//   }
+// >;
 
-export type DefaultColorPaletteShadeKey =
-  | '050'
-  | '100'
-  | '200'
-  | '300'
-  | '400'
-  | '500'
-  | '600'
-  | '700'
-  | '800'
-  | '900'
-  | '950';
+// export type ColorPaletteShade = {
+//   L: number;
+//   contrast?: ContrastType;
+// };
 
-export type ColorPalette<
-  COLOR extends string = string,
-  SHADE extends string = string
-> = ColorPaletteSettings & {
-  id: string;
-  name: string;
-  shades: Map<SHADE, ColorPaletteShade>;
-  colors: Map<COLOR, Color<SHADE>>;
-};
+// export type DefaultColorPaletteShadeKey =
+//   | '050'
+//   | '100'
+//   | '200'
+//   | '300'
+//   | '400'
+//   | '500'
+//   | '600'
+//   | '700'
+//   | '800'
+//   | '900'
+//   | '950';
+
+// export type ColorPalette<
+//   COLOR extends string = string,
+//   SHADE extends string = string
+// > = ColorPaletteSettings & {
+//   id: string;
+//   name: string;
+//   shades: Map<SHADE, ColorPaletteShade>;
+//   colors: Map<COLOR, Color<SHADE>>;
+// };
