@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 const PaletteSelectView: React.FC = () => {
-  return <div>Hi</div>;
+  return <p>Please select a color palette.</p>;
 };
 
 export default PaletteSelectView;

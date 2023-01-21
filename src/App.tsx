@@ -12,7 +12,21 @@ export const loadApp: LoaderFunction = ({ request }) => {
 
 const App: React.FC = () => {
   return (
-    <div className="app">
+    <div id="app">
+      <header className="flex-row-wrap flex-justify-space-between  flex-align-items-center">
+        <h1>Color Palette Generator</h1>
+        <form className="flex-row-nowrap flex-align-items-center">
+          <label htmlFor="selectColorPalette" className="text-nowrap ">
+            Palette:
+          </label>
+          <select id="selectColorPalette" placeholder="Select Palette">
+            <option value="0-13">0-13</option>
+            <option value="14-17">14-17</option>
+            <option value="18-23">18-23</option>
+            <option value="24+">24+</option>
+          </select>
+        </form>
+      </header>
       <Outlet />
     </div>
   );

@@ -13,6 +13,8 @@
   --cpg-spacing-10x: 2.5rem;
   --cpg-spacing-12x: 3rem;
   --cpg-spacing-16x: 4rem;
+  --cpg-spacing-20x: 5rem;
+  --cpg-spacing-24x: 6rem;
 
   --cpg-padding-blockquote: var(--cpg-spacing-2x) var(--cpg-spacing-3x);
   --cpg-padding-button: 0 var(--cpg-spacing-7x);
@@ -34,6 +36,10 @@
   --cpg-border-width: 0.0625rem;
   --cpg-border-width-thick: 0.1875rem;
 
+  /** Elevation **/
+
+  --cpg-z-index-header: 100;
+
   /** Font **/
 
   --cpg-font-family-sans: 'Roboto', 'Helvetica Neue', 'Helvetica', sans-serif;
@@ -51,7 +57,7 @@
   --cpg-font-weight-bold: 700;
   --cpg-font-weight-button: 700;
   --cpg-font-weight-hx: var(--cpg-font-weight);
-  --cpg-font-weight-label: 500;
+  --cpg-font-weight-label: 600;
 
   --cpg-letter-spacing: 0.01em;
   --cpg-letter-spacing-button: 0.0625rem;
@@ -80,6 +86,7 @@
 
   --cpg-color-text-dark: hsla(0, 0%, 10%, 85%);
   --cpg-color-text-light: hsla(0, 0%, 99%, 90%);
+  --cpg-color-shadow: hsla(0, 0%, 10%, 25%);
 
   --cpg-color-primary-100: hsl(90, 40%, 90%);
   --cpg-color-primary-200: hsl(90, 40%, 80%);
@@ -96,6 +103,7 @@
   :root {
     --cpg-color-text: var(--cpg-color-text-dark);
     --cpg-color-bg-app: var(--cpg-color-neutral-050);
+    --cpg-color-bg-header: var(--cpg-color-neutral-000);
 
     --cpg-color-primary: var(--cpg-color-primary-600);
     --cpg-color-primary-contrast: var(--cpg-color-text-light);
@@ -111,6 +119,7 @@
   :root {
     --cpg-color-text-main: var(--cpg-color-text-light);
     --cpg-color-bg-app: var(--cpg-color-neutral-850);
+    --cpg-color-bg-header: var(--cpg-color-neutral-000);
 
     --cpg-color-primary: var(--cpg-color-primary-400);
     --cpg-color-primary-contrast: var(--cpg-color-text-dark);
