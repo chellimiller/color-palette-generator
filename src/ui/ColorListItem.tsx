@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { setColorSettings } from '../state';
+import { removeColor, setColorSettings } from '../state';
 import { Color, ColorVariantKey } from '../types';
 import ColorVariantTable from './ColorVariantTable';
+import UpdateColorForm from './UpdateColorForm';
+import { Trash } from 'react-feather';
 
 export type ColorListItemProps = {
   color: Color;
@@ -10,7 +12,7 @@ export type ColorListItemProps = {
 const ColorListItem: React.FC<ColorListItemProps> = (props) => {
   const { color } = props;
 
-  const light = color.variants.get(20);
+  const light = color.variants.get(10);
   const dark = color.variants.get(80);
 
   if (!light || !dark) {
@@ -23,35 +25,22 @@ const ColorListItem: React.FC<ColorListItemProps> = (props) => {
   return (
     <details>
       <summary style={{ background: dark.value, color: light.value }}>
-        {label}
+        <span>{label}</span>
+        <div className="flex-spacer" />
+        <div role="toolbar">
+          <button
+            className="icon inline"
+            data-tooltip={`Delete color "${label}"`}
+            onClick={() => removeColor(label)}
+          >
+            <Trash />
+          </button>
+        </div>
       </summary>
-      <p>
-        <label htmlFor="color">Color</label>
-        <input
-          id="color"
-          value={color.base.toHexString()}
-          type="color"
-          onChange={(event) =>
-            setColorSettings({ label, base: event.target.value })
-          }
-        />
-        <label htmlFor="mainVariantKey">Main Variant</label>
-        <input
-          id="mainVariantKey"
-          value={color.mainVariant}
-          type="number"
-          step={10}
-          min={0}
-          max={100}
-          onChange={(event) =>
-            setColorSettings({
-              label,
-              mainVariant: event.target.valueAsNumber as ColorVariantKey,
-            })
-          }
-        />
+      <div>
+        {/* <UpdateColorForm color={color} /> */}
         <ColorVariantTable color={color} />
-      </p>
+      </div>
     </details>
   );
 };

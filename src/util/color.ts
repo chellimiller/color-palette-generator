@@ -1,11 +1,14 @@
 import * as tinycolor from 'tinycolor2';
 import { Color, ColorInit, ColorVariant, ColorVariantKey } from '../types';
-import { generateColorVariant } from './color-variant';
+import { generateColorVariant, toColorVariantKey } from './color-variant';
 
 export function generateColor(init: ColorInit = {}): Color {
-  const { label = 'color', base: baseHex = '#777', mainVariant = 50 } = init;
+  const { label = 'color', base: baseHex = tinycolor.random().toHexString() } =
+    init;
 
   const base = tinycolor(baseHex);
+
+  const { mainVariant = toColorVariantKey(base.getLuminance() * 80) } = init;
 
   const variants: Color['variants'] = new Map();
 

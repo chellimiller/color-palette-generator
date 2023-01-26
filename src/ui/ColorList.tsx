@@ -9,7 +9,10 @@ const ColorList: React.FC = (props) => {
   return (
     <section>
       <details>
-        <summary>New Color</summary>
+        <summary>
+          <span>New Color</span>
+          <div className="flex-spacer" />
+        </summary>
         <CreateColorForm />
       </details>
       {colors.map((color) => (

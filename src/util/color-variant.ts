@@ -27,17 +27,17 @@ export function generateColorVariant(
   }
 
   if (variantKey === 0) {
-    return { label, value: tinycolor('white').toHexString(), key: variantKey };
+    return { label, value: tinycolor('black').toHexString(), key: variantKey };
   }
   if (variantKey === 100) {
-    return { label, value: tinycolor('black').toHexString(), key: variantKey };
+    return { label, value: tinycolor('white').toHexString(), key: variantKey };
   }
 
   if (variantKey > mainVariant) {
     const mixPercentage = (100 - variantKey) / (100 - mainVariant);
     const mixAmount = mixPercentage * 100;
     const hex = tinycolor
-      .mix('black', base.toHexString(), mixAmount)
+      .mix('white', base.toHexString(), mixAmount)
       .toHexString();
 
     return {
@@ -54,7 +54,7 @@ export function generateColorVariant(
   const mixPercentage = variantKey / mainVariant;
   const mixAmount = mixPercentage * 100;
   const hex = tinycolor
-    .mix('white', base.toHexString(), mixAmount)
+    .mix('black', base.toHexString(), mixAmount)
     .toHexString();
 
   return {
