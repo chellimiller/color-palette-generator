@@ -1,0 +1,48 @@
+:root {
+  --ui-color-swatch--size: 2rem;
+  --ui-color-swatch--size-sm: 1rem;
+  --ui-color-swatch--size-md: 2rem;
+  --ui-color-swatch--size-lg: 3rem;
+
+  --ui-color-swatch--invalid-outline: 0.25rem solid red;
+
+  --ui-color-swatch--radius: 0.5rem;
+}
+
+.color-swatch {
+  height: var(--ui-color-swatch--size);
+  min-height: var(--ui-color-swatch--size);
+  max-height: var(--ui-color-swatch--size);
+
+  width: var(--ui-color-swatch--size);
+  min-width: var(--ui-color-swatch--size);
+  max-width: var(--ui-color-swatch--size);
+
+  border-radius: var(--ui-color-swatch--radius);
+
+  &--with-text {
+    max-width: unset;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &--invalid {
+    outline: var(--ui-color-swatch--invalid-outline);
+  }
+
+  &--size {
+    &-sm {
+      --ui-color-swatch--size: var(--ui-color-swatch--size-sm, 1rem);
+    }
+
+    &-md {
+      --ui-color-swatch--size: var(--ui-color-swatch--size-md, 2rem);
+    }
+
+    &-lg {
+      --ui-color-swatch--size: var(--ui-color-swatch--size-lg, 3rem);
+    }
+  }
+}

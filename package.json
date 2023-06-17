@@ -58,7 +58,10 @@
     "webpack-dev-server": "^4.9.0"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@floating-ui/react": "0.24.3",
+    "@mui/material": "^5.13.5",
     "clsx": "1.2.1",
     "dexie": "^3.2.2",
     "dexie-react-hooks": "^1.1.1",
