@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Outlet, LoaderFunction, redirect } from 'react-router-dom';
-import ColorList from './ui/ColorList';
 
 export const loadApp: LoaderFunction = ({ request }) => {
   const pathname = new URL(request.url).pathname;
@@ -17,9 +16,7 @@ const App: React.FC = () => {
       <header>
         <h1>Color Palette Generator</h1>
       </header>
-      <main>
-        <ColorList />
-      </main>
+      <main></main>
     </div>
   );
 };

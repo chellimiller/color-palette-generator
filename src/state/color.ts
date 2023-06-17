@@ -1,88 +1,39 @@
-import * as tinycolor from 'tinycolor2';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { Color, ColorInit, ColorVariantKey } from '../types';
-import { generateColor } from '../util';
-import database, { DatabaseColor } from './_database';
+import { Color, NeutralColor } from '../types';
+import database from './_database';
+import ColorHelper from '../util/ColorHelper';
 
-function fromDatabaseColor(color: DatabaseColor): Color {
-  return { ...color, base: tinycolor(color.base) };
-}
-function toDatabaseColor(color: Color): DatabaseColor {
-  return { ...color, base: color.base.toHexString() };
-}
+const defaultNeutralColor = ColorHelper.createNeutralColor();
 
-export async function getColorByLabel(
-  label: string
-): Promise<Color | undefined> {
-  const color = await database.colors.get(label);
-  return !color ? undefined : fromDatabaseColor(color);
+async function getColor<C extends Color>(id: C['id']): Promise<C | undefined> {
+  return (await database.colors.get(id)) as C;
 }
 
-export async function getColors(): Promise<Color[]> {
-  return await (await database.colors.toArray()).map(fromDatabaseColor);
+async function getAllColors(): Promise<Color[]> {
+  return await database.colors.toArray();
 }
 
-export async function setColor(data: Color): Promise<string> {
-  return await database.colors.put(toDatabaseColor(data), data.label);
+async function getNeutralColor(): Promise<NeutralColor | undefined> {
+  return await getColor<NeutralColor>('neutral');
 }
 
-type SetColorVariantProps = {
-  label: string;
-  key: ColorVariantKey;
-  value: string;
-};
-
-export async function setColorVariant(
-  props: SetColorVariantProps
-): Promise<string> {
-  const color = await getColorByLabel(props.label);
-  if (!color) throw new Error(`Cannot find color with label "${props.label}"`);
-  const { key, value } = props;
-  const variant = color.variants.get(key);
-
-  if (!variant)
-    throw new Error(
-      `Cannot find variant ${key} on color with label "${props.label}"`
-    );
-
-  const variants = new Map(color.variants);
-  variants.set(key, { ...variant, value });
-
-  return await setColor({ ...color, variants });
-}
-type SetColorSettingsProps = {
-  label: string;
-  base?: string;
-  mainVariant?: ColorVariantKey;
-};
-
-export async function setColorSettings(
-  props: SetColorSettingsProps
-): Promise<string> {
-  const color = await getColorByLabel(props.label);
-  if (!color) throw new Error(`Cannot find color with label "${props.label}"`);
-
-  const {
-    label,
-    base = color.base.toHexString(),
-    mainVariant = color.mainVariant,
-  } = props;
-
-  return await setColor(generateColor({ label, base, mainVariant }));
+export async function setColor<C extends Color>(data: C): Promise<C['id']> {
+  return await database.colors.put(data, data.id);
 }
 
-export async function createColor(init: ColorInit): Promise<string> {
-  return await setColor(generateColor(init));
+export async function removeColor(data: Pick<Color, 'id'>): Promise<void> {
+  return await database.colors.delete(data.id);
 }
 
-export async function removeColor(label: string): Promise<void> {
-  return await database.colors.delete(label);
-}
-
-export function useColorByLabel(label: string): Color | undefined {
-  return useLiveQuery(async () => await getColorByLabel(label), [label]);
+export function useColor(id: Color['id']): Color | undefined {
+  return useLiveQuery(() => getColor(id), [id]);
 }
 
 export function useColors(): Color[] {
-  return useLiveQuery(getColors) || [];
+  return useLiveQuery(getAllColors) || [];
+}
+
+export function useNeutralColor(): NeutralColor {
+  const neutralColor = useLiveQuery(getNeutralColor);
+  return neutralColor ?? defaultNeutralColor;
 }
