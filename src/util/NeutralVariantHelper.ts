@@ -8,6 +8,7 @@ import {
   keysNeutralVariant,
 } from '../types';
 import { ModifiableValue } from '../types/_core';
+import ModifiableValueHelper from './ModifiableValueHelper';
 
 class NeutralVariantHelper {
   static getModifiableValue(params: {
@@ -42,7 +43,10 @@ class NeutralVariantHelper {
         ...color.neutral,
         [mode]: {
           ...color.neutral[mode],
-          [variant]: prev.setDefault(value),
+          [variant]: ModifiableValueHelper.setDefaultValue({
+            prev,
+            defaultValue: value,
+          }),
         },
       },
     };
@@ -71,7 +75,7 @@ class NeutralVariantHelper {
         ...color.neutral,
         [mode]: {
           ...color.neutral[mode],
-          [variant]: prev.setValue(value),
+          [variant]: ModifiableValueHelper.setValue({ prev, value }),
         },
       },
     };
@@ -91,7 +95,7 @@ class NeutralVariantHelper {
         ...color.neutral,
         [mode]: {
           ...color.neutral[mode],
-          [variant]: prev.reset(),
+          [variant]: ModifiableValueHelper.reset(prev),
         },
       },
     };

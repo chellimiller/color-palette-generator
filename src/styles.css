@@ -1,50 +1,19 @@
-:root {
-  --icon-size: 48px;
-}
-
-header,
-main {
-  padding: 0 var(--spacing);
-}
-
-details > summary {
-  min-height: calc(var(--spacing) * 3);
-  border-radius: var(--border-radius);
-  padding: 0 var(--spacing);
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-}
-
-.flex-spacer {
-  flex-grow: 10;
-}
-
-details > * {
-  padding: 0 var(--spacing);
-}
-
-.icon {
-  border-radius: 100%;
-  min-width: var(--icon-size);
-  max-width: var(--icon-size);
-  min-height: var(--icon-size);
-  max-height: var(--icon-size);
-  padding: calc(var(--spacing) / 2);
-
-  background-color: transparent;
-  outline: none;
-  border: none;
-}
-
-button.icon:hover,
-input[type='submit'].icon:hover {
-  opacity: 50%;
-}
-
-button.inline,
-input[type='submit'].inline {
-  width: auto;
-  display: inline-block;
+.app {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
   margin: 0;
+
+  display: flex;
+  flex-flow: column nowrap;
+
+  overflow: hidden;
+}
+
+.app__content {
+  flex-grow: 1;
+  overflow: auto;
 }

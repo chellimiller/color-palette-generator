@@ -11,9 +11,10 @@ import {
   lightNeutralVariantMapping,
   StandardColor,
 } from '../types';
+import ModifiableValueHelper from './ModifiableValueHelper';
 import createColorTones from './createColorToneRecord';
-import createModifiableValue from './createModifiableValue';
 import generateUUID from './generateUUID';
+import mapObject from './mapObject';
 import randomColor from './randomColor';
 
 class ColorHelper {
@@ -24,17 +25,17 @@ class ColorHelper {
 
     const tone: ColorToneRecord = mapObject({
       object: createColorTones({ source }),
-      mapper: ({ value }) => createModifiableValue({ defaultValue: value }),
+      mapper: ({ value }) => ModifiableValueHelper.create(value),
     });
 
     const variant: Color['variant'] = {
       light: mapObject({
         object: lightColorVariantMapping,
-        mapper: ({ value }) => createModifiableValue({ defaultValue: value }),
+        mapper: ({ value }) => ModifiableValueHelper.create(value),
       }),
       dark: mapObject({
         object: darkColorVariantMapping,
-        mapper: ({ value }) => createModifiableValue({ defaultValue: value }),
+        mapper: ({ value }) => ModifiableValueHelper.create(value),
       }),
     };
 
@@ -58,11 +59,11 @@ class ColorHelper {
     const neutral: NeutralColor['neutral'] = {
       light: mapObject({
         object: lightNeutralVariantMapping,
-        mapper: ({ value }) => createModifiableValue({ defaultValue: value }),
+        mapper: ({ value }) => ModifiableValueHelper.create(value),
       }),
       dark: mapObject({
         object: darkNeutralVariantMapping,
-        mapper: ({ value }) => createModifiableValue({ defaultValue: value }),
+        mapper: ({ value }) => ModifiableValueHelper.create(value),
       }),
     };
 

@@ -24,8 +24,9 @@ const ColorField: React.FC<ColorFieldProps> = React.memo((props) => {
     <TextField
       {...forwarded}
       variant="outlined"
-      type="color"
       className={clsx(CLASSES.default, className)}
+      value={value}
+      onChange={onChange}
       InputProps={{
         startAdornment: (
           <InputAdornment

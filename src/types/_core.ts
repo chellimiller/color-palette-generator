@@ -3,10 +3,6 @@ export interface ModifiableValue<T> {
   currentValue?: T;
 
   readonly value: T;
-
-  setDefault(defaultValue: T): ModifiableValue<T>;
-  setValue(currentValue?: T): ModifiableValue<T>;
-  reset(): ModifiableValue<T>;
 }
 
 export type WithContrastVariant<NAME extends string> = NAME | `on-${NAME}`;

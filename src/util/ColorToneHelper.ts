@@ -1,5 +1,6 @@
 import { isNil } from 'lodash';
 import { Color, ColorTone, keysColorTone } from '../types';
+import ModifiableValueHelper from './ModifiableValueHelper';
 
 class ColorToneHelper {
   static getDefaultValue(params: { color: Color; tone: ColorTone }): string {
@@ -19,7 +20,10 @@ class ColorToneHelper {
       ...color,
       tone: {
         ...color.tone,
-        [tone]: prev.setDefault(value),
+        [tone]: ModifiableValueHelper.setDefaultValue({
+          prev,
+          defaultValue: value,
+        }),
       },
     };
   }
@@ -41,7 +45,10 @@ class ColorToneHelper {
       ...color,
       tone: {
         ...color.tone,
-        [tone]: prev.setValue(value),
+        [tone]: ModifiableValueHelper.setValue({
+          prev,
+          value,
+        }),
       },
     };
   }
@@ -54,7 +61,7 @@ class ColorToneHelper {
       ...color,
       tone: {
         ...color.tone,
-        [tone]: prev.reset(),
+        [tone]: ModifiableValueHelper.reset(prev),
       },
     };
   }

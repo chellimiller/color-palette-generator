@@ -1,7 +1,7 @@
-function toObject<K extends string, U extends Record<K, unknown>>(params: {
-  array: K[];
-  mapper: (key: K) => U[K];
-}): U {
+export function toObject<
+  K extends string,
+  U extends Record<K, unknown>
+>(params: { array: K[]; mapper: (key: K) => U[K] }): U {
   const { array, mapper } = params;
 
   return array.reduce<U>((acc, key) => {
@@ -27,3 +27,5 @@ function mapObject<
     return acc;
   }, {} as U);
 }
+
+export default mapObject;
