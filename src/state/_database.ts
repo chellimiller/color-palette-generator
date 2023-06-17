@@ -7,7 +7,7 @@ export class DexieDatabase extends Dexie {
   constructor() {
     super('color-palette-generator');
     this.version(1).stores({
-      colors: '++id, label',
+      colors: '++id',
     });
   }
 }
@@ -36,8 +36,10 @@ export function createColorModifier<P extends Record<string, unknown>>(
     ...params
   }: ColorModifierParams<P, C>): Promise<C['id']> => {
     const next = modifier<C>(color, params);
+    console.log({ color, next });
     if (color === next) return color.id;
-    return await database.colors.put(next, next.id);
+    console.log('asdf');
+    return await database.colors.put({ ...next, id: color.id }, color.id);
   };
 }
 

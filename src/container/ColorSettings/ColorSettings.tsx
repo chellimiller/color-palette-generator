@@ -51,12 +51,12 @@ const ColorSettings: React.FC<ColorSettingsProps> = React.memo((props) => {
         <SelectField
           value={color.source.tone}
           label="Source Tone"
-          onChange={(event) =>
+          onChange={(event) => {
             setColorSourceTone({
               color,
               sourceTone: event.target.value as ColorTone,
-            })
-          }
+            });
+          }}
           sx={{ width: '33%' }}
         >
           {keysColorTone.map((tone) => (

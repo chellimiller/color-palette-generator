@@ -51,9 +51,9 @@ export const ColorToneValue: Record<ColorTone, number> = {
   '100': 100,
 };
 
-export const keysColorTone: ColorTone[] = Object.keys(
-  ColorToneValue
-).sort() as ColorTone[];
+export const keysColorTone: ColorTone[] = Object.keys(ColorToneValue).sort(
+  (a, b) => Number.parseInt(a, 10) - Number.parseInt(b, 10)
+) as ColorTone[];
 
 export type ColorToneHexValue = ModifiableValue<string>;
 

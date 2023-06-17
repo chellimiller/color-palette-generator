@@ -11,23 +11,33 @@ const CLASSES = {
   },
 };
 
-interface ColorFieldProps extends BaseTextFieldProps {
+interface ColorFieldProps extends Omit<BaseTextFieldProps, 'variant'> {
   className?: string;
   value?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  variant?: BaseTextFieldProps['variant'] | 'ghost';
 }
 
 const ColorField: React.FC<ColorFieldProps> = React.memo((props) => {
-  const { value, onChange, className, ...forwarded } = props;
+  const {
+    value,
+    onChange,
+    className,
+    variant = 'outlined',
+    ...forwarded
+  } = props;
+
+  const trueVariant = variant === 'ghost' ? 'standard' : variant;
 
   return (
     <TextField
       {...forwarded}
-      variant="outlined"
+      variant={trueVariant}
       className={clsx(CLASSES.default, className)}
       value={value}
       onChange={onChange}
       InputProps={{
+        disableUnderline: variant === 'ghost',
         startAdornment: (
           <InputAdornment
             className={CLASSES.ColorSwatch.default}

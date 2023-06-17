@@ -9,6 +9,7 @@ import {
 import { Color } from '../../types';
 import ColorSettings from '../ColorSettings/ColorSettings';
 import ColorToneHelper from '../../util/ColorToneHelper';
+import ColorToneTable from '../ColorToneTable/ColorToneTable';
 
 type ColorPanelProps = React.PropsWithChildren<{
   color: Color;
@@ -42,11 +43,7 @@ const ColorPanel: React.FC<ColorPanelProps> = React.memo((props) => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Donec placerat, lectus sed mattis semper, neque lectus feugiat
-            lectus, varius pulvinar diam eros in elit. Pellentesque convallis
-            laoreet laoreet.
-          </Typography>
+          <ColorToneTable color={color} />
         </AccordionDetails>
       </Accordion>
     </Box>

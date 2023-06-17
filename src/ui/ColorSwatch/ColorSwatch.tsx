@@ -16,6 +16,7 @@ const CLASSES = {
 
 type ColorSwatchProps = React.PropsWithChildren<{
   color?: string;
+  id?: string;
   contrast?: string;
   tooltip?: string;
   className?: string;
@@ -24,12 +25,13 @@ type ColorSwatchProps = React.PropsWithChildren<{
 }>;
 
 const ColorSwatch: React.FC<ColorSwatchProps> = React.memo((props) => {
-  const { color, contrast, children, tooltip, className, invalid, size } =
+  const { color, contrast, children, id, tooltip, className, invalid, size } =
     props;
 
   return (
     <Tooltip title={tooltip} arrow>
       <div
+        id={id}
         className={clsx(
           CLASSES.default,
           { [CLASSES.withText]: !!contrast, [CLASSES.invalid]: invalid },
